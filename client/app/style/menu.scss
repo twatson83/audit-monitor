@@ -1,0 +1,61 @@
+@import "variables/_colours";
+
+.menu {
+  color: #333;
+  position: fixed;
+  background-color: #F8F8F8;
+
+  border: 1px solid;
+  border-color: #e7e7e7;
+
+  margin-right: 0;
+  margin-left: 0;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  &__row {
+    float: left;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  &__link {
+    color: #777;
+    text-align: center;
+    padding: 17px;
+    position: relative;
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      color: #333;
+    }
+
+    &--active {
+      color: #555;
+      background-color: #e7e7e7;
+    }
+  }
+
+  &__item {
+    display: table-cell;
+  }
+
+  &__title {
+    color: #5e5e5e;
+    float: left;
+    margin: 15px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: bold;
+  }
+
+  &__logo {
+    float: left;
+    padding: 7px 0 7px 7px;
+  }
+}

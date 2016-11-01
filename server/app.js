@@ -21,7 +21,7 @@ let app = express(),
 
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
-app.use(express.static('public'));
+app.use(express.static('client/public'));
 app.use(routes);
 
 server.listen(config.port);

@@ -1,0 +1,39 @@
+.panel {
+  margin: 2px;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+
+  &__heading {
+    padding: 2px 8px;
+    color: #333;
+    background-color: #EEEEEE;
+    border-color: #ddd;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 20px;
+  }
+
+  &__icon {
+    padding-top: 3px;
+    font-size: 12px;
+  }
+
+  &__heading-options {
+    float: right;
+  }
+
+  &__title {
+    font-weight: bold;
+    padding-left: 5px;
+  }
+
+  &__body {
+    padding: 0;
+    overflow-y: auto;
+  }
+
+}

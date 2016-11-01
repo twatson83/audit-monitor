@@ -39,6 +39,13 @@ export async function find(page, pageSize, start, end, query, sort, sortDirectio
         .toArray();
 }
 
+export async function findBySession(sessionId){
+    let db = await connect();
+    var uuid = new mongo.Binary(new Buffer(sessionId, 'base64', 3));
+    console.log(uuid.toJSON())
+    return await db.collection("Audit").findOne({ "CorrelationId": uuid });
+}
+
 export async function insertBatch(messages){
     var db = await connect();
     return db.collection('Audit').insertMany(messages);

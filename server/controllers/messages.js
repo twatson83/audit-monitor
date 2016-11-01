@@ -1,5 +1,5 @@
 import logger from '../utils/logger';
-import { find, getById } from '../models/message';
+import { find, getById, findBySession } from '../models/message';
 
 /**
  *
@@ -31,10 +31,25 @@ export async function getMessages(req, res) {
         sort = req.query.sort,
         sortDirection = req.query.sortDirection;
     try {
-        let instances = await find(page, pageSize, start, end, query, sort, sortDirection);
-        res.json(instances);
+        let messages = await find(page, pageSize, start, end, query, sort, sortDirection);
+        res.json(messages);
     } catch (ex) {
         logger.log("error", "Error fetching audit messages", ex);
+        res.status(500).json(ex.message);
+    }
+}
+
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ */
+export async function getSessionMessages(req, res) {
+    try {
+        let messages = await findBySession(req.params.sessionId);
+        res.json(messages);
+    } catch (ex) {
+        logger.log("error", "Error fetching session messages", ex);
         res.status(500).json(ex.message);
     }
 }

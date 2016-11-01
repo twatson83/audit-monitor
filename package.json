@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec --compilers js:babel-core/register",
+    "test": "./node_modules/.bin/mocha --reporter spec --compilers js:babel-core/register --recursive \"./{,!(node_modules)/**/}*.spec.js\"",
     "eslint": "eslint -c .eslintrc.json src",
     "start": "set NODE_ENV=development&&nodemon server/app.js --watch server --watch client --exec babel-node",
     "build": "babel -d ./debug ./server -s",
@@ -27,12 +27,19 @@
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-1": "6.16.0",
     "chai": "3.5.0",
+    "css-loader": "0.25.0",
     "eslint": "3.7.1",
     "eslint-plugin-react": "6.3.0",
+    "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.9.0",
     "jsdoc": "3.4.2",
     "mocha": "3.1.0",
+    "node-sass": "3.10.1",
     "nodemon": "1.11.0",
+    "sass-loader": "4.0.2",
     "sinon": "1.17.6",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
     "webpack": "1.13.2",
     "webpack-dev-middleware": "1.8.3",
     "webpack-hot-middleware": "2.12.2"
@@ -41,6 +48,8 @@
     "babel-plugin-array-includes": "2.0.3",
     "babel-runtime": "6.11.6",
     "express": "4.14.0",
+    "file-loader": "0.9.0",
+    "font-awesome": "4.6.3",
     "moment": "2.15.1",
     "mongodb": "2.2.10",
     "mssql": "3.3.0",
@@ -60,6 +69,7 @@
     "rxjs-es": "5.0.0-beta.12",
     "service-connect": "0.0.19",
     "service-connect-hub": "1.0.7",
+    "url-loader": "0.5.7",
     "winston": "2.2.0"
   }
 }

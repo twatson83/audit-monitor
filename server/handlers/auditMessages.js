@@ -2,6 +2,7 @@ import config from "../config";
 import logger from '../utils/logger';
 import Rx from 'rxjs/Rx';
 import { insertBatch } from '../models/message';
+import { guidToBinary } from '../utils/mongoUtils';
 
 var Bus = require("service-connect");
 
@@ -26,7 +27,7 @@ auditBus.init(() => {
             Body: JSON.stringify(message),
             BodyJSON: message,
             Headers: headers,
-            CorrelationId: message.CorrelationId
+            CorrelationId: guidToBinary(message.CorrelationId).toJSON()
         })))
         .bufferTime(200)
         .subscribe(messages => {

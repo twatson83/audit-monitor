@@ -1,0 +1,15 @@
+.form-group {
+
+  margin-bottom: 15px;
+
+  &__label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  &__input {
+    width: 100%;
+
+  }
+}
