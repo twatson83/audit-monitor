@@ -2,7 +2,7 @@ import logger from '../utils/logger';
 import { find, getById, findBySession } from '../models/message';
 
 /**
- *
+ * Finds a single message by id
  * @param {Object} req
  * @param {Object} res
  */
@@ -18,7 +18,7 @@ export async function getMessage(req, res) {
 }
 
 /**
- *
+ * Finds messages using search parameters passed in query string
  * @param {Object} req
  * @param {Object} res
  */
@@ -40,7 +40,7 @@ export async function getMessages(req, res) {
 }
 
 /**
- *
+ * Finds all messages in a single session
  * @param {Object} req
  * @param {Object} res
  */
