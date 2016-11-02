@@ -13,11 +13,11 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha'],
 
+    usePolling: true,
 
     // list of files / patterns to load in the browser
     files: [
-      'client/**/*.spec.js',
-      'server/**/*.spec.js'
+      'client/**/*.spec.js'
     ],
 
 
@@ -29,16 +29,16 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'client/**/*.js': ['webpack', 'sourcemap']
+      'client/**/*.spec.js': ['webpack', 'sourcemap']
     },
 
     webpack: {
-      devtool: 'source-map',
-      output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
+      resolve: {
+        cache: false
       },
+      cache: false,
+      watch: true,
+      devtool: 'inline-source-map',
       plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -46,6 +46,11 @@ module.exports = function(config) {
           allChunks: true
         })
       ],
+      output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath: '/static/'
+      },
       module: {
         loaders: [{
           test: /\.js$/,
@@ -68,8 +73,7 @@ module.exports = function(config) {
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': true,
         'react/addons': true
-      },
-      debug: true
+      }
     },
 
     webpackServer: {
@@ -101,7 +105,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['jsdom'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
@@ -116,7 +120,8 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-webpack',
       'karma-sourcemap-loader',
-      'karma-jsdom-launcher'
+      'karma-jsdom-launcher',
+      'karma-chrome-launcher'
     ]
   })
 }

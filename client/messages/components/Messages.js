@@ -53,7 +53,8 @@ export default class Messages extends React.Component {
                                     </tr>
                                     :
                                     this.props.messages.map(m =>
-                                        <MessageRow cid={this.props.cid}
+                                        <MessageRow key={this.props.cid}
+                                                    cid={this.props.cid}
                                                     columns={this.props.columns}
                                                     message={m}
                                                     setActiveMessage={this.props.setActiveMessage}
