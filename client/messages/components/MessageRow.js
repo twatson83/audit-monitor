@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 
-import "../../app/style/table.scss";
+if (process.env.BROWSER ) {
+    require ("../../app/style/table.scss");
+}
 
 export default class MessageRow extends React.Component {
     constructor(props){
@@ -33,7 +35,7 @@ export default class MessageRow extends React.Component {
 
     render() {
         return (
-            <tr key={this.props.message._id}>
+            <tr>
                 {
                     Object.keys(this.props.columns).map(k =>
                         <td key={this.props.message._id + k}>{this.getColValue(k, this.props.columns[k], this.props.message)}</td>

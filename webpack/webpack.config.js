@@ -1,16 +1,20 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var config = require("../server/config");
+
+const dist = path.resolve(__dirname, "../dist/");
+console.log("Dist = " + dist);
 
 module.exports = {
     devtool: 'source-map',
     entry: [
-        'babel-polyfill',
+        "webpack-dev-server/client?http://localhost:" + config.port,
         'webpack-hot-middleware/client',
-        './client/app/index'
+        './client/app/index.js'
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: dist,
         filename: 'bundle.js',
         publicPath: '/static/'
     },
@@ -19,14 +23,18 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('style.css', {
             allChunks: true
-        })
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                BROWSER: JSON.stringify(true)
+            }
+        }),
     ],
     module: {
         loaders: [{
             test: /\.js$/,
-            loaders: [ 'babel' ],
-            exclude: /node_modules/,
-            include: __dirname
+            loaders: ['babel-loader?cacheDirectory' ],
+            exclude: /node_modules/
         }, {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract('css!sass')
@@ -34,6 +42,5 @@ module.exports = {
             test: /\.(woff|woff2|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
             loader: 'url-loader?limit=1024&name=fonts/[name].[ext]'
         }]
-    },
-    debug: true
+    }
 };

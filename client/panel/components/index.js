@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
-
-require("../style/panel.scss");
+if (process.env.BROWSER ) {
+    require("../style/panel.scss");
+}
 
 export default class Panel extends React.Component {
 

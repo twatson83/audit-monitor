@@ -7,6 +7,6 @@ import MessagesPageContainer from './containers/MessagesPageContainer';
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={DashboardContainer}/>
-        <Route path="messages" component={MessagesPageContainer}/>
+        <Route path="audit" component={MessagesPageContainer}/>
     </Route>
 );

@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
-import "../style/menu.scss";
+
+if (process.env.BROWSER ) {
+    require ("../style/menu.scss");
+}
 
 const App = (props) => {
   return (
@@ -21,7 +24,7 @@ const App = (props) => {
                     <IndexLink className="menu__link" to="/">Queues</IndexLink>
                 </li>
                 <li className="menu__item">
-                    <IndexLink className="menu__link" to="/messages">Messages</IndexLink>
+                    <IndexLink className="menu__link" to="/audit">Messages</IndexLink>
                 </li>
                 <li className="menu__item">
                     <IndexLink className="menu__link" to="/">Errors</IndexLink>

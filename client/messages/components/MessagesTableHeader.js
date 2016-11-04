@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 
-import "../../app/style/table.scss";
-import "../style/messages-table.scss";
+if (process.env.BROWSER ) {
+    require("../../app/style/table.scss");
+    require("../style/messages-table.scss");
+}
 
 export default class MessagesTableHeader extends React.Component {
 

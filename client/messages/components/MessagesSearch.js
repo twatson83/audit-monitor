@@ -3,11 +3,13 @@ import debounce from '../../utils/debounce';
 import DateTime from 'react-datetime';
 import moment from 'moment';
 
-import "../style/messages-search.scss";
-import "../../app/style/datetime.scss";
-import "../../app/style/input.scss";
-import "../../panel/style/panel.scss";
-import "../../app/style/button.scss";
+if (process.env.BROWSER ) {
+    require("../style/messages-search.scss");
+    require("../../app/style/datetime.scss");
+    require("../../app/style/input.scss");
+    require("../../panel/style/panel.scss");
+    require("../../app/style/button.scss");
+}
 
 export default class MessagesSearch extends React.Component {
     constructor(props) {

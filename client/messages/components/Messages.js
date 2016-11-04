@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import Panel from '../../panel/components';
-import MessagesTableHeader from './MessagesTableHeader';
-import MessageSearch from './MessagesSearch';
-import MessageRow from './MessageRow';
+import MessagesHeader from './MessagesHeader';
+import MessagesTable from './MessagesTable';
 
-import "../../app/style/table.scss";
+if (process.env.BROWSER ) {
+    require("../../app/style/table.scss");
+}
 
 export default class Messages extends React.Component {
     constructor(props){
@@ -26,45 +27,24 @@ export default class Messages extends React.Component {
                 height={this.props.height}
                 heading=
                     {
-                        <div>
-                            <i className="fa fa-envelope panel__icon"/>
-                            <span className="panel__title">Audit Messages</span>
-                            <MessageSearch cid={this.props.cid}
-                                requesting={this.props.requesting}
-                                requestOptions={this.props.requestOptions}
-                                fetchMessages={this.props.fetchMessages}
-                                toggleStreaming={this.props.toggleStreaming}/>
-                        </div>
+                        <MessagesHeader cid={this.props.cid}
+                                        requesting={this.props.requesting}
+                                        requestOptions={this.props.requestOptions}
+                                        fetchMessages={this.props.fetchMessages}
+                                        toggleStreaming={this.props.toggleStreaming}/>
                     }
                 body=
                     {
-                        <table className="table messages-table">
-                            <MessagesTableHeader cid={this.props.cid}
-                                                 requestOptions={this.props.requestOptions}
-                                                 columns={this.props.columns}
-                                                 fetchMessages={this.props.fetchMessages}/>
-                            <tbody>
-                            {
-                                this.props.requesting ?
-                                    <tr>
-                                        <td colSpan={Object.keys(this.props.columns).length + 2}>
-                                            Loading..
-                                        </td>
-                                    </tr>
-                                    :
-                                    this.props.messages.map(m =>
-                                        <MessageRow key={this.props.cid}
-                                                    cid={this.props.cid}
-                                                    columns={this.props.columns}
-                                                    message={m}
-                                                    setActiveMessage={this.props.setActiveMessage}
-                                                    getSession={this.props.getSession} />
-                                    )
-                            }
-                            </tbody>
-                        </table>
-                    }
+                        <MessagesTable cid={this.props.cid}
+                                       requestOptions={this.props.requestOptions}
+                                       columns={this.props.columns}
+                                       messages={this.props.messages}
+                                       fetchMessages={this.props.fetchMessages}
+                                       setActiveMessage={this.props.setActiveMessage}
+                                       getSession={this.props.getSession}
+                                       requesting={this.props.requesting}/>
 
+                    }
             />
         )
     }

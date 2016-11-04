@@ -6,11 +6,16 @@ import routes from "./routes";
 import configureStore from "./store";
 import { syncHistoryWithStore } from "react-router-redux";
 import { connect } from "service-connect-hub/lib/client";
-import "font-awesome/scss/font-awesome.scss";
-import "./style/base.scss";
+
+
+if (process.env.BROWSER ) {
+    require("font-awesome/scss/font-awesome.scss");
+    require("./style/base.scss");
+}
 
 connect().then(() => {
-    const store = configureStore();
+    const preloadedState = window.__PRELOADED_STATE__;
+    const store = configureStore(preloadedState);
 
     const history = syncHistoryWithStore(browserHistory, store);
 

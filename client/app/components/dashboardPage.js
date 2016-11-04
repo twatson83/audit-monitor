@@ -1,6 +1,9 @@
 import React from 'react';
 import MessagesContainer from '../../messages/containers/MessagesContainer';
-import "../style/grid.scss";
+
+if (process.env.BROWSER ) {
+    require ("../style/grid.scss");
+}
 
 export default class HomePage extends React.Component {
     constructor(props) {
