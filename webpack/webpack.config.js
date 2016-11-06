@@ -4,19 +4,17 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var config = require("../server/config");
 
 const dist = path.resolve(__dirname, "../dist/");
-console.log("Dist = " + dist);
 
 module.exports = {
     devtool: 'source-map',
     entry: [
-        "webpack-dev-server/client?http://localhost:" + config.port,
         'webpack-hot-middleware/client',
         './client/app/index.js'
     ],
     output: {
         path: dist,
         filename: 'bundle.js',
-        publicPath: '/static/'
+        publicPath: '/'
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),

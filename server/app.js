@@ -11,13 +11,14 @@ require("./handlers/auditMessages");
 //require("./handlers/errorMesages");
 //require("./handlers/heartbeatMessages");
 
-const staticPath = path.resolve(__dirname, "../static");
-console.log("staticPath = " + staticPath);
-
 export default function(callback) {
     let app = express(),
         server = http.createServer(app),
         hub = new ServiceConnectHub(config.messagehub);
+
+    if (process.env.NODE_ENV === "production"){
+        app.use(express.static('dist'));
+    }
 
     app.use(express.static('client/public'));
     app.use(routes);

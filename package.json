@@ -6,7 +6,9 @@
   "scripts": {
     "test": "karma start karma.conf.js",
     "eslint": "eslint -c .eslintrc.json src",
-    "start": "set NODE_ENV=development&&nodemon index.js --watch server --watch client"
+    "start": "set NODE_ENV=production&&node index.js",
+    "dev": "set NODE_ENV=development&&nodemon index.js --watch server --watch client",
+    "build": "set NODE_ENV=production&&webpack -p --config webpack/webpack.production.config.js"
   },
   "keywords": [],
   "author": "",
