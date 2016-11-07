@@ -9,26 +9,26 @@ module.exports = {
         bus: {
             amqpSettings: {
                 queue: { name: 'ServiceConnectAuditMonitor' },
-                host: "amqp://localhost"
+                host: "amqp://localhost?frameMax=40960"
             }
         }
     },
     auditBus: {
         amqpSettings: {
             queue: { name: 'audit' },
-            host: "amqp://localhost"
+            host: "amqp://localhost?frameMax=40960"
         }
     },
     errorBus: {
         amqpSettings: {
-            queue: { name: 'error' },
-            host: "amqp://localhost"
+            queue: { name: 'errors' },
+            host: "amqp://localhost?frameMax=40960"
         }
     },
     heartbeatBus: {
         amqpSettings: {
             queue: { name: 'heartbeat' },
-            host: "amqp://localhost"
+            host: "amqp://localhost?frameMax=40960"
         }
     },
     port: 2998

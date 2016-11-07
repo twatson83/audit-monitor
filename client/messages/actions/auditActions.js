@@ -20,7 +20,7 @@ export function requestAuditMessages(cid, requestOptions) {
             .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k] || ""))
             .join('&');
 
-        fetch("/messages?" + query)
+        fetch("/api/messages?" + query)
             .then(response => response.json())
             .then(instances => dispatch({ type: RECEIVE_AUDIT_MESSAGES, instances, cid}))
             .catch(error => dispatch({ type: RECEIVE_AUDIT_MESSAGE_ERROR, error, cid}));
@@ -65,7 +65,7 @@ export function setActiveMessage(cid, message){
 
 export function getSession(cid, sessionId){
     return function(dispatch) {
-        fetch("/session/" + encodeURIComponent(sessionId))
+        fetch("/api/session/" + encodeURIComponent(sessionId))
             .then(response => response.json())
             .then(messages => dispatch({ type: SET_ACTIVE_SESSION, messages, cid}))
             .catch(error => console.log);

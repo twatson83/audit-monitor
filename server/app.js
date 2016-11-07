@@ -3,12 +3,11 @@ import http from "http";
 import routes from "./routes";
 import logger from './utils/logger';
 import config from "./config";
-import path from "path";
 
 var ServiceConnectHub = require('service-connect-hub/lib/server').ServiceConnectHub;
 
 require("./handlers/auditMessages");
-//require("./handlers/errorMesages");
+require("./handlers/errorMesages");
 //require("./handlers/heartbeatMessages");
 
 export default function(callback) {

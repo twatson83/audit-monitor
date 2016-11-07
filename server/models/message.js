@@ -2,24 +2,24 @@ import connect from "./mongodb";
 import mongo from 'mongodb';
 
 export async function getById(id) {
-    var db = await connect();
-    var objectId = new mongo.ObjectID(id);
+    let db = await connect();
+    let objectId = new mongo.ObjectID(id);
     return await db.collection("Audit").findOne({
         "_id": objectId
     });
 }
 
 export async function find(page, pageSize, start, end, query, sort, sortDirection) {
-    var db = await connect();
-    var findOptions = {};
+    let db = await connect();
+    let findOptions = {};
 
     if(start !== undefined && end !== undefined){
         findOptions.TimeReceived = { "$gte": new Date(start), "$lte": new Date(end) };
     }
 
-    var cursor;
+    let cursor;
     if (query !== undefined && query !== null && query !== ""){
-        var queryRegex = new RegExp(query, "ig");
+        let queryRegex = new RegExp(query, "ig");
         findOptions.$or = [{
             "TypeName": queryRegex
         },{
@@ -42,11 +42,12 @@ export async function find(page, pageSize, start, end, query, sort, sortDirectio
 export async function findBySession(sessionId){
     let db = await connect();
     var uuid = new mongo.Binary(new Buffer(sessionId, 'base64', 3));
-    console.log(uuid.toJSON())
     return await db.collection("Audit").findOne({ "CorrelationId": uuid });
 }
 
-export async function insertBatch(messages){
-    var db = await connect();
-    return db.collection('Audit').insertMany(messages);
+export async function insert(message){
+    let db = await connect();
+    let result = await db.collection('Audit').insertOne(message);
+    message._id = result.insertedId;
+    return message;
 }

@@ -1,0 +1,50 @@
+.errors-search {
+
+  &__label {
+    display: inline-block;
+    padding-right: 3px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  &__date {
+    display: inline-block;
+    padding-right: 5px;
+  }
+
+  &__input {
+    width: auto;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    display: inline-block;
+    height: 17px;
+    padding: 1px 8px 1px 5px;
+    font-size: 11px;
+    line-height: 1.5;
+    border-radius: 3px;
+    margin-right: 4px;
+
+
+
+  }
+
+  &__button {
+    margin-right: 4px;
+
+    &--last{
+      padding: 1px 5px 1px 5px;
+    }
+  }
+
+  &__stop-start {
+    font-size: 9px !important;
+    float: left;
+    padding-top: 3px;
+    padding-bottom: 4px;
+  }
+
+}
+

@@ -1,0 +1,33 @@
+.errors-table {
+  &__TimeSent-col {
+    width: 150px;
+  }
+
+  &__TimeReceived-col {
+    width: 150px;
+  }
+
+  &__details-col {
+    width: 50px;
+  }
+
+  &__session-col {
+    width: 50px;
+  }
+
+  &__sort-icon {
+    float: right;
+    padding-right: 3px;
+    padding-left: 5px;
+    font-weight: bold !important;
+  }
+
+  &__col-text {
+    float: left;
+  }
+
+  &__loading {
+    margin: 20px 50px;
+  }
+
+}

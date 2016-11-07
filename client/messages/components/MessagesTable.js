@@ -2,35 +2,41 @@ import React, { PropTypes } from 'react';
 import MessagesTableHeader from './MessagesTableHeader';
 import MessageRow from './MessageRow';
 
-const MessagesTable = props => {
-    return (
-        <table className="table messages-table">
-            <MessagesTableHeader cid={props.cid}
-                                 requestOptions={props.requestOptions}
-                                 columns={props.columns}
-                                 fetchMessages={props.fetchMessages}/>
-            <tbody>
-            {
-                props.requesting ?
-                    <tr>
-                        <td colSpan={Object.keys(props.columns).length + 2}>
-                            Loading..
-                        </td>
-                    </tr>
-                    :
-                    props.messages.map(m =>
-                        <MessageRow key={m._id}
-                                    cid={props.cid}
-                                    columns={props.columns}
-                                    message={m}
-                                    setActiveMessage={props.setActiveMessage}
-                                    getSession={props.getSession} />
-                    )
-            }
-            </tbody>
-        </table>
-    )
-};
+export default class MessagesTable extends React.PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
+    render(){
+        return (
+            <table className="table messages-table">
+                <MessagesTableHeader cid={this.props.cid}
+                                     requestOptions={this.props.requestOptions}
+                                     columns={this.props.columns}
+                                     fetchMessages={this.props.fetchMessages}/>
+                <tbody>
+                {
+                    this.props.requesting ?
+                        <tr>
+                            <td colSpan={Object.keys(this.props.columns).length + 2}>
+                                Loading..
+                            </td>
+                        </tr>
+                        :
+                        this.props.messages.map(m =>
+                            <MessageRow key={m._id}
+                                        cid={this.props.cid}
+                                        columns={this.props.columns}
+                                        message={m}
+                                        setActiveMessage={this.props.setActiveMessage}
+                                        getSession={this.props.getSession} />
+                        )
+                }
+                </tbody>
+            </table>
+        )
+    }
+}
 
 MessagesTable.propTypes = {
     columns: PropTypes.object.isRequired,
@@ -48,5 +54,3 @@ MessagesTable.propTypes = {
     messages: React.PropTypes.array,
     requesting: React.PropTypes.bool.isRequired
 };
-
-export default MessagesTable;

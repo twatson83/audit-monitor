@@ -27,7 +27,7 @@ const App = (props) => {
                     <IndexLink className="menu__link" to="/audit">Messages</IndexLink>
                 </li>
                 <li className="menu__item">
-                    <IndexLink className="menu__link" to="/">Errors</IndexLink>
+                    <IndexLink className="menu__link" to="/errors">Errors</IndexLink>
                 </li>
                 <li className="menu__item">
                     <IndexLink className="menu__link" to="/">Settings</IndexLink>
