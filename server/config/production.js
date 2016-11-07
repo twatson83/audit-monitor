@@ -1,6 +1,6 @@
 module.exports = {
     mongodb: {
-        url: ""
+        url: "mongodb://localhost/RMessageBusMonitor"
     },
     logging: {
         level: "debug"
@@ -8,9 +8,27 @@ module.exports = {
     messagehub: {
         bus: {
             amqpSettings: {
-                queue: { name: 'MonitorExample' },
-                host: ""
+                queue: { name: 'ServiceConnectAuditMonitor' },
+                host: "amqp://localhost"
             }
+        }
+    },
+    auditBus: {
+        amqpSettings: {
+            queue: { name: 'audit' },
+            host: "amqp://localhost"
+        }
+    },
+    errorBus: {
+        amqpSettings: {
+            queue: { name: 'error' },
+            host: "amqp://localhost"
+        }
+    },
+    heartbeatBus: {
+        amqpSettings: {
+            queue: { name: 'heartbeat' },
+            host: "amqp://localhost"
         }
     },
     port: 2998

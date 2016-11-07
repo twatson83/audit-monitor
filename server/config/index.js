@@ -1,4 +1,4 @@
-export default (function (env) {
+module.exports = (function (env) {
     var config = {};
     switch (env) {
         case 'production':

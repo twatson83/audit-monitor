@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     mongodb: {
         url: "mongodb://localhost/RMessageBusMonitor"
     },

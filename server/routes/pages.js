@@ -17,14 +17,14 @@ const page = (html, preloadedState) => {
       <head>
           <title></title>
           <meta charset="utf8"/>
-          <link rel="stylesheet" href="/static/style.css">
+          <link rel="stylesheet" href="/style.css">
       </head>
       <body>
         <div id="app"><div>${html}</div></div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>     
-        <script src="/static/bundle.js"></script>   
+        <script src="/bundle.js"></script>   
       </body>
     </html>
     `
