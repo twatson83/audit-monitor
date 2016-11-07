@@ -11,7 +11,7 @@ if (process.env.BROWSER ) {
     require("../../app/style/button.scss");
 }
 
-export default class MessagesSearch extends React.Component {
+export default class MessagesSearch extends React.PureComponent  {
     constructor(props) {
         super(props);
         this.state = {...this.props.requestOptions};

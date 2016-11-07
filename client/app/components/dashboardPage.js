@@ -5,7 +5,7 @@ if (process.env.BROWSER ) {
     require ("../style/grid.scss");
 }
 
-export default class HomePage extends React.Component {
+export default class HomePage extends React.PureComponent {
     constructor(props) {
         super(props);
     }

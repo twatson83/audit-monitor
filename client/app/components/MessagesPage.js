@@ -1,7 +1,7 @@
 import React from 'react';
 import MessagesContainer from '../../messages/containers/MessagesContainer';
 
-export default class HomePage extends React.Component {
+export default class HomePage extends React.PureComponent {
     constructor(props) {
         super(props);
     }

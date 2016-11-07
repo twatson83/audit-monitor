@@ -7,7 +7,7 @@ if (process.env.BROWSER ) {
     require("../../app/style/table.scss");
 }
 
-export default class Messages extends React.Component {
+export default class Messages extends React.PureComponent  {
     constructor(props){
         super(props);
     }

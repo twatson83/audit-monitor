@@ -5,7 +5,7 @@ if (process.env.BROWSER ) {
     require("../style/messages-table.scss");
 }
 
-export default class MessagesTableHeader extends React.Component {
+export default class MessagesTableHeader extends React.PureComponent  {
 
     constructor(props) {
         super(props);

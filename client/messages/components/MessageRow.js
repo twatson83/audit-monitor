@@ -5,7 +5,7 @@ if (process.env.BROWSER ) {
     require ("../../app/style/table.scss");
 }
 
-export default class MessageRow extends React.Component {
+export default class MessageRow extends React.PureComponent  {
     constructor(props){
         super(props);
         this.showSession = this.showSession.bind(this);
