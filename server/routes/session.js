@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSessionMessages } from '../controllers/messages';
+import { getSessionMessages } from '../controllers/api/messages';
 
 var router = express.Router();
 

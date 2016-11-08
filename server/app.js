@@ -3,8 +3,9 @@ import http from "http";
 import routes from "./routes";
 import logger from './utils/logger';
 import config from "./config";
+import bodyParser from "body-parser";
 
-var ServiceConnectHub = require('service-connect-hub/lib/server').ServiceConnectHub;
+let ServiceConnectHub = require('service-connect-hub/lib/server').ServiceConnectHub;
 
 require("./handlers/auditMessages");
 require("./handlers/errorMesages");
@@ -19,6 +20,7 @@ export default function(callback) {
         app.use(express.static('dist'));
     }
 
+    app.use(bodyParser.json());
     app.use(express.static('client/public'));
     app.use(routes);
 

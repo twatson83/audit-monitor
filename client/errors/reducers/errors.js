@@ -3,7 +3,8 @@ import {REQUEST_ERROR_MESSAGES,
     RECEIVE_NEW_ERROR_MESSAGES,
     RECEIVE_ERROR_MESSAGE_ERROR,
     TOGGLE_ERROR_STREAM,
-    SET_ACTIVE_ERROR_MESSAGE} from '../constants/actionTypes';
+    SET_ACTIVE_ERROR_MESSAGE,
+    CLEAR_SERVER_RENDERED} from '../constants/actionTypes';
 
 import {error as errorState} from '../initialState';
 
@@ -69,6 +70,15 @@ export default function errors (state = errorState(), action) {
             return {
                 ...state,
                 activeMessage: action.message
+            };
+
+        case CLEAR_SERVER_RENDERED:
+            return {
+                ...state,
+                requestOptions: {
+                    ...state.requestOptions,
+                    serverRendered: false
+                }
             };
 
         default:

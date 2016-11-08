@@ -9,7 +9,7 @@ export default class ErrorsTable extends React.PureComponent {
 
     render(){
         return (
-            <table className="table messages-table">
+            <table className="table errors-table">
                 <ErrorsTableHeader cid={this.props.cid}
                                    requestOptions={this.props.requestOptions}
                                    columns={this.props.columns}

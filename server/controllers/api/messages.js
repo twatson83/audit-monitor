@@ -1,5 +1,5 @@
-import logger from '../utils/logger';
-import { find, getById, findBySession } from '../models/message';
+import logger from '../../utils/logger';
+import { find, getById, findBySession } from '../../models/message';
 
 /**
  * Finds a single message by id

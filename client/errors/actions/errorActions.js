@@ -3,7 +3,8 @@ import {REQUEST_ERROR_MESSAGES,
         RECEIVE_NEW_ERROR_MESSAGES,
         RECEIVE_ERROR_MESSAGE_ERROR,
         TOGGLE_ERROR_STREAM,
-        SET_ACTIVE_ERROR_MESSAGE} from '../constants/actionTypes';
+        SET_ACTIVE_ERROR_MESSAGE,
+        CLEAR_SERVER_RENDERED} from '../constants/actionTypes';
 
 import { addHandler, removeHandler } from "service-connect-hub/lib/client";
 
@@ -59,4 +60,8 @@ export function receiveNewErrorMessages(cid, messages) {
 
 export function setActiveError(cid, message){
     return { type: SET_ACTIVE_ERROR_MESSAGE, message, cid };
+}
+
+export function clearServerRendered(cid){
+    return { type: CLEAR_SERVER_RENDERED, cid };
 }

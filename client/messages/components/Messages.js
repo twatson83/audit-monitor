@@ -14,7 +14,11 @@ export default class Messages extends React.PureComponent  {
 
     componentDidMount() {
         this.props.toggleStreaming(this.props.cid, this.props.requestOptions.started);
-        this.props.fetchMessages(this.props.cid, this.props.requestOptions);
+        if (!this.props.requestOptions.serverRendered){
+            this.props.fetchMessages(this.props.cid, this.props.requestOptions);
+        }else {
+            this.props.clearServerRendered(this.props.cid);
+        }
     }
 
     componentWillUnmount() {
@@ -69,5 +73,6 @@ Messages.propTypes = {
     columns: PropTypes.object.isRequired,
     setActiveMessage: PropTypes.func.isRequired,
     getSession: PropTypes.func.isRequired,
-    clearSession: PropTypes.func.isRequired
+    clearSession: PropTypes.func.isRequired,
+    clearServerRendered: PropTypes.func.isRequired
 };

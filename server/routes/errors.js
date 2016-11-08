@@ -1,5 +1,5 @@
 import express from 'express';
-import { getErrors, getError} from '../controllers/errors';
+import { getErrors, getError} from '../controllers/api/errors';
 
 var router = express.Router();
 

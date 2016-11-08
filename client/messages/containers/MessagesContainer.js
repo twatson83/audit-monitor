@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import { requestAuditMessages, toggleStreaming, stopStream,
-         setActiveMessage, getSession, clearSession } from "../actions/auditActions";
+         setActiveMessage, getSession, clearSession, clearServerRendered } from "../actions/auditActions";
 
 import Messages from "../components/Messages";
 
@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
         stopStream: () => dispatch(stopStream()),
         setActiveMessage: (cid, m) => dispatch(setActiveMessage(cid, m)),
         getSession: (cid, sessionId) => dispatch(getSession(cid, sessionId)),
-        clearSession: (cid, sessionId) => dispatch(clearSession(cid, sessionId))
+        clearSession: (cid, sessionId) => dispatch(clearSession(cid, sessionId)),
+        clearServerRendered: cid => dispatch(clearServerRendered(cid))
     }
 };
 

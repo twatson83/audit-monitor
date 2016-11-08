@@ -5,7 +5,8 @@ import {REQUEST_AUDIT_MESSAGES,
         TOGGLE_AUDIT_STREAM,
         SET_ACTIVE_MESSAGE,
         SET_ACTIVE_SESSION,
-        CLEAR_ACTIVE_SESSION} from '../constants/actionTypes';
+        CLEAR_ACTIVE_SESSION,
+        CLEAR_SERVER_RENDERED} from '../constants/actionTypes';
 
 import { addHandler, removeHandler } from "service-connect-hub/lib/client";
 
@@ -74,4 +75,8 @@ export function getSession(cid, sessionId){
 
 export function clearSession(cid){
     return { type: CLEAR_ACTIVE_SESSION, cid };
+}
+
+export function clearServerRendered(cid){
+    return { type: CLEAR_SERVER_RENDERED, cid };
 }

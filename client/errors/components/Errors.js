@@ -14,7 +14,11 @@ export default class Errors extends React.PureComponent  {
 
     componentDidMount() {
         this.props.toggleStreaming(this.props.cid, this.props.requestOptions.started);
-        this.props.fetchErrors(this.props.cid, this.props.requestOptions);
+        if (!this.props.requestOptions.serverRendered){
+            this.props.fetchErrors(this.props.cid, this.props.requestOptions);
+        }else {
+            this.props.clearServerRendered(this.props.cid);
+        }
     }
 
     componentWillUnmount() {
@@ -66,5 +70,6 @@ Errors.propTypes = {
     cid: PropTypes.string.isRequired,
     stopStream: PropTypes.func.isRequired,
     columns: PropTypes.object.isRequired,
-    setActiveError: PropTypes.func.isRequired
+    setActiveError: PropTypes.func.isRequired,
+    clearServerRendered: PropTypes.func.isRequired
 };

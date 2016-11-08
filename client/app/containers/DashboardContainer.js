@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
         error: {
             ...state.dashboard.error,
             errorColumns
-        }
+        },
+        endpoint: state.dashboard.endpoint
     };
 };
 

@@ -5,7 +5,8 @@ import {REQUEST_AUDIT_MESSAGES,
     TOGGLE_AUDIT_STREAM,
     SET_ACTIVE_SESSION,
     CLEAR_ACTIVE_SESSION,
-    SET_ACTIVE_MESSAGE} from '../constants/actionTypes';
+    SET_ACTIVE_MESSAGE,
+    CLEAR_SERVER_RENDERED} from '../constants/actionTypes';
 
 import {audit as auditState} from '../initialState';
 
@@ -83,6 +84,15 @@ export default function audit (state = auditState(), action) {
             return {
                 ...state,
                 activeMessage: action.message
+            };
+
+        case CLEAR_SERVER_RENDERED:
+            return {
+                ...state,
+                requestOptions: {
+                    ...state.requestOptions,
+                    serverRendered: false
+                }
             };
 
         default:

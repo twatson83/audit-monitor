@@ -30,7 +30,7 @@ errorBus.init(() => {
                 Headers: headers,
                 CorrelationId: guidToBinary(message.CorrelationId).toJSON(),
                 Exception:  JSON.parse(headers.Exception)
-            }).then(observer.next);
+            }).then(m => observer.next(m)).catch(logger.error);
         }))
         .bufferTime(200)
         .subscribe(messages => {

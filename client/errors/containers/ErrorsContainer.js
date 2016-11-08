@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import { requestErrorMessages, toggleStreaming, stopStream,
-         setActiveError } from "../actions/errorActions";
+         setActiveError, clearServerRendered } from "../actions/errorActions";
 
 import Errors from "../components/Errors";
 
@@ -18,7 +18,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchErrors: (cid, requestOptions) => dispatch(requestErrorMessages(cid, requestOptions)),
         toggleStreaming: (cid, stream) => dispatch(toggleStreaming(cid, stream)),
         stopStream: () => dispatch(stopStream()),
-        setActiveError: (cid, m) => dispatch(setActiveError(cid, m))
+        setActiveError: (cid, m) => dispatch(setActiveError(cid, m)),
+        clearServerRendered: cid => dispatch(clearServerRendered(cid))
     }
 };
 
