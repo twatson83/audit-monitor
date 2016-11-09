@@ -9,6 +9,7 @@ import {REQUEST_AUDIT_MESSAGES,
         CLEAR_SERVER_RENDERED} from '../constants/actionTypes';
 
 import { addHandler, removeHandler } from "service-connect-hub/lib/client";
+import "isomorphic-fetch";
 
 let newAuditMessagesCallback;
 

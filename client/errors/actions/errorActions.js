@@ -7,6 +7,7 @@ import {REQUEST_ERROR_MESSAGES,
         CLEAR_SERVER_RENDERED} from '../constants/actionTypes';
 
 import { addHandler, removeHandler } from "service-connect-hub/lib/client";
+import "isomorphic-fetch"
 
 let newErrorMessagesCallback;
 
