@@ -13,6 +13,8 @@ export default class ErrorRow extends React.PureComponent  {
         switch (col.type){
             case "string":
                 return message[name];
+            case "link":
+                return <a href="#">{message[name]}</a>;
             case "decimal":
                 return parseFloat(Math.round(message[name] * 100) / 100).toFixed(2);
             case "memory":

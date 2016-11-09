@@ -13,6 +13,8 @@ export default class ErrorRow extends React.PureComponent  {
 
     getColValue(name, col, message) {
         switch (col.type){
+            case "link":
+                return <a href="#">{message[name]}</a>;
             case "string":
                 return message[name];
             case "datetime":
@@ -32,11 +34,12 @@ export default class ErrorRow extends React.PureComponent  {
             <tr>
                 {
                     Object.keys(this.props.columns).map(k =>
-                        <td key={this.props.error._id + k}>{this.getColValue(k, this.props.columns[k], this.props.error)}</td>
+                        <td key={this.props.error._id + k}>
+                            {this.getColValue(k, this.props.columns[k], this.props.error)}
+                        </td>
                     )
                 }
-                <td><a href="#" onClick={this.showErrorDetails}>Details</a></td>
-                <td><a href="#" onClick={this.showErrorDetails}>Error</a></td>
+                <td><a href="#" onClick={this.showErrorDetails}>Exception</a></td>
             </tr>
         )
     }

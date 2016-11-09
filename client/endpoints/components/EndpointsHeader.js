@@ -9,7 +9,7 @@ export default class EndpointsHeader extends React.PureComponent {
     render(){
         return (
             <div>
-                <i className="fa fa-exclamation-circle panel__icon"/>
+                <i className="fa fa-share-alt panel__icon"/>
                 <span className="panel__title">Endpoints</span>
                 <EndpointsSearch cid={this.props.cid}
                                 requesting={this.props.requesting}

@@ -14,6 +14,8 @@ export default class MessageRow extends React.PureComponent  {
 
     getColValue(name, col, message) {
         switch (col.type){
+            case "link":
+                return <a href="#">{message[name]}</a>;
             case "string":
                 return message[name];
             case "datetime":
@@ -42,7 +44,6 @@ export default class MessageRow extends React.PureComponent  {
                     )
                 }
                 <td><a href="#" onClick={this.showSession}>Session</a></td>
-                <td><a href="#" onClick={this.showMessageDetails}>Details</a></td>
             </tr>
         )
     }

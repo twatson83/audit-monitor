@@ -55,7 +55,6 @@ export default class MessagesTableHeader extends React.PureComponent  {
                         )
                     }
                     <th className="messages-table__session-col"></th>
-                    <th className="messages-table__details-col"></th>
                 </tr>
             </thead>
         );

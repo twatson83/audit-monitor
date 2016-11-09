@@ -20,7 +20,7 @@ export function error(){
         columns: {
             "TypeName": {
                 Display: "Type",
-                type: "string"
+                type: "link"
             },
             "TimeSent": {
                 Display: "Time Sent",

@@ -14,7 +14,7 @@ export function endpoint(){
         columns: {
             "Name": {
                 Display: "Name",
-                type: "string"
+                type: "link"
             },
             "LatestCpu": {
                 Display: "CPU",

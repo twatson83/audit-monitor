@@ -20,11 +20,11 @@ const mapStateToProps = (state) => {
     return {
         audit: {
             ...state.dashboard.audit,
-            auditColumns
+            columns: auditColumns
         },
         error: {
             ...state.dashboard.error,
-            errorColumns
+            columns: errorColumns
         },
         endpoint: state.dashboard.endpoint
     };

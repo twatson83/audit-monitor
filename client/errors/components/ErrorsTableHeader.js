@@ -55,7 +55,6 @@ export default class ErrorsTableHeader extends React.PureComponent  {
                         )
                     }
                     <th className="errors-table__session-col"></th>
-                    <th className="errors-table__details-col"></th>
                 </tr>
             </thead>
         );

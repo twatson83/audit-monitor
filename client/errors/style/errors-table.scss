@@ -1,4 +1,8 @@
 .errors-table {
+  &__TypeName-col {
+    width: 400px;
+  }
+
   &__TimeSent-col {
     width: 150px;
   }
