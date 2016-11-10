@@ -37,6 +37,7 @@ export default class Endpoints extends React.PureComponent  {
                                          fetchEndpoints={this.props.fetchEndpoints}
                                          toggleStreaming={this.props.toggleStreaming}/>
                     }
+
                 body=
                     {
                         <EndpointsTable cid={this.props.cid}

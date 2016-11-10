@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 import EndpointsSearch from './EndpointsSearch';
 
+if (process.env.BROWSER ) {
+    require ("../style/endpoints-header.scss");
+}
+
 export default class EndpointsHeader extends React.PureComponent {
     constructor(props){
         super(props);
@@ -8,7 +12,7 @@ export default class EndpointsHeader extends React.PureComponent {
 
     render(){
         return (
-            <div>
+            <div className="endpoints-header">
                 <i className="fa fa-share-alt panel__icon"/>
                 <span className="panel__title">Endpoints</span>
                 <EndpointsSearch cid={this.props.cid}

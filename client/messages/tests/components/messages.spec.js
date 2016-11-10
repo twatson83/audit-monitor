@@ -1,7 +1,7 @@
 import React from 'react';
 import {expect} from 'chai';
 import Messages from '../../components/Messages';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { audit }  from '../../initialState';
 import MessagesHeader from '../../components/MessagesHeader';
 import MessagesTable from '../../components/MessagesTable';
@@ -9,17 +9,26 @@ import Panel from '../../../panel/components';
 
 describe("components", () => {
 
-    let state, functions, props;
+    let state, functions, props,
+        fetchMessagesArgs, toggleStreamingArgs, clearServerRenderedArgs;
 
     beforeEach(() => {
+
         state = audit();
         functions = {
-            fetchMessages: () => {},
-            toggleStreaming: () => {},
+            fetchMessages: (...args) => {
+                fetchMessagesArgs = args;
+            },
+            toggleStreaming: (...args) => {
+                toggleStreamingArgs = args;
+            },
             stopStream: () => {},
             setActiveMessage: () => {},
             getSession: () => {},
-            clearSession: () => {}
+            clearSession: () => {},
+            clearServerRendered: (...args) => {
+                clearServerRenderedArgs = args;
+            }
         };
         props = {
             ...state,
@@ -28,6 +37,35 @@ describe("components", () => {
     });
 
     describe("<Messages />", () => {
+        it("should start streaming if started is true", function(){
+            state.requestOptions.started = true;
+            mount(<Messages {...props} />);
+            expect(toggleStreamingArgs).to.exist;
+            expect(toggleStreamingArgs[0]).to.equal(state.cid);
+            expect(toggleStreamingArgs[1]).to.equal(true);
+        });
+
+        it("should not start streaming if started is false", function(){
+            state.requestOptions.started = false;
+            mount(<Messages {...props} />);
+            expect(toggleStreamingArgs).to.exist;
+            expect(toggleStreamingArgs[0]).to.equal(state.cid);
+            expect(toggleStreamingArgs[1]).to.equal(false);
+        });
+
+        it("should fetch messages if the component wasnt rendered on the server", function(){
+            mount(<Messages {...props} />);
+            expect(fetchMessagesArgs).to.exist;
+            expect(fetchMessagesArgs[0]).to.equal(state.cid);
+            expect(fetchMessagesArgs[1]).to.equal(state.requestOptions);
+        });
+
+        it("should clearServerRendered flag if the component was rendered on the server", function(){
+            state.requestOptions.serverRendered = true;
+            mount(<Messages {...props} />);
+            expect(clearServerRenderedArgs).to.exist;
+            expect(clearServerRenderedArgs[0]).to.equal(state.cid);
+        });
 
         it("should render a panel", () => {
             const wrapper = shallow(<Messages {...props} />);
@@ -65,7 +103,5 @@ describe("components", () => {
             expect(body.props.messages).to.equal(state.messages);
             expect(body.props.requesting).to.equal(state.requesting);
         });
-
     });
-
 });

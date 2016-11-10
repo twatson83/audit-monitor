@@ -14,20 +14,20 @@ const App = (props) => {
                 Service Connect
             </div>
             <ul className="menu__row">
-                <li className="menu__item menu__item">
-                    <IndexLink className="menu__link menu__link--active" to="/">Dashboard</IndexLink>
-                </li>
-                <li className="menu__item menu__item">
-                    <IndexLink className="menu__link" to="/endpoints">Endpoints</IndexLink>
+                <li className="menu__item">
+                    <IndexLink className="menu__link menu__link--active" to="/"  href="/">Dashboard</IndexLink>
                 </li>
                 <li className="menu__item">
-                    <IndexLink className="menu__link" to="/audit">Messages</IndexLink>
+                    <IndexLink className="menu__link" to="/endpoints" href="/endpoints">Endpoints</IndexLink>
                 </li>
                 <li className="menu__item">
-                    <IndexLink className="menu__link" to="/errors">Errors</IndexLink>
+                    <IndexLink className="menu__link" to="/audit" href="/audit">Messages</IndexLink>
                 </li>
                 <li className="menu__item">
-                    <IndexLink className="menu__link" to="/">Settings</IndexLink>
+                    <IndexLink className="menu__link" to="/errors" href="/errors">Errors</IndexLink>
+                </li>
+                <li className="menu__item">
+                    <IndexLink className="menu__link" to="/" href="/">Settings</IndexLink>
                 </li>
             </ul>
         </div>
