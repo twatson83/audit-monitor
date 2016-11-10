@@ -13,6 +13,9 @@ describe("components", () => {
         fetchMessagesArgs, toggleStreamingArgs, clearServerRenderedArgs;
 
     beforeEach(() => {
+        fetchMessagesArgs = null;
+        toggleStreamingArgs = null;
+        clearServerRenderedArgs = null;
 
         state = audit();
         functions = {
@@ -60,11 +63,23 @@ describe("components", () => {
             expect(fetchMessagesArgs[1]).to.equal(state.requestOptions);
         });
 
+        it("should not fetch messages if the component was rendered on the server", function(){
+            state.requestOptions.serverRendered = true;
+            mount(<Messages {...props} />);
+            expect(fetchMessagesArgs).to.not.exist;
+        });
+
         it("should clearServerRendered flag if the component was rendered on the server", function(){
             state.requestOptions.serverRendered = true;
             mount(<Messages {...props} />);
             expect(clearServerRenderedArgs).to.exist;
             expect(clearServerRenderedArgs[0]).to.equal(state.cid);
+        });
+
+        it("should not clearServerRendered flag if the component was not rendered on the server", function(){
+            state.requestOptions.serverRendered = false;
+            mount(<Messages {...props} />);
+            expect(clearServerRenderedArgs).to.not.exist;
         });
 
         it("should render a panel", () => {
