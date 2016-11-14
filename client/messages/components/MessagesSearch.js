@@ -20,11 +20,13 @@ export default class MessagesSearch extends React.PureComponent  {
         this.search = this.search.bind(this);
         this.startDateChange = this.startDateChange.bind(this);
         this.endDateChange = this.endDateChange.bind(this);
+        this.next = this.next.bind(this);
+        this.previous = this.previous.bind(this);
+        this.toggleStreaming = this.toggleStreaming.bind(this);
     }
 
     queryChange(event){
         this.setState({
-            ...this.state,
             query: event.target.value
         });
         this.search();
@@ -32,7 +34,6 @@ export default class MessagesSearch extends React.PureComponent  {
 
     startDateChange(date){
         this.setState({
-            ...this.state,
             start: date.format()
         });
 
@@ -43,7 +44,6 @@ export default class MessagesSearch extends React.PureComponent  {
 
     endDateChange(date){
         this.setState({
-            ...this.state,
             end: date.format()
         });
         if(this.state.start){
@@ -51,7 +51,10 @@ export default class MessagesSearch extends React.PureComponent  {
         }
     }
 
-    search(){
+    search(e){
+        if(e){
+            e.preventDefault();
+        }
         this.props.fetchMessages(this.props.cid, this.state);
     }
 
@@ -82,48 +85,49 @@ export default class MessagesSearch extends React.PureComponent  {
         return (
             <div className="panel__heading-options messages-search">
                 <label className="messages-search__label">Start Date</label>
-                <DateTime className="messages-search__date"
+                <DateTime className="messages-search__date startDate"
                           onChange={this.startDateChange}
                           value={this.state.start ? moment(this.state.start) : ""}
                           closeOnSelect={true}/>
 
                 <label className="messages-search__label">End Date</label>
-                <DateTime className="messages-search__date"
+                <DateTime className="messages-search__date endDate"
                           onChange={this.endDateChange}
                           value={this.state.end ? moment(this.state.end) : ""}
                           closeOnSelect={true}/>
 
                 <label className="messages-search__label">Search</label>
-                <input className="messages-search__input"
+                <input className="messages-search__input query"
                        type="text"
-                       onChange={this.queryChange} value={this.state.query}/>
+                       onChange={this.queryChange}
+                       value={this.state.query}/>
 
 
                 <button className={
                             this.props.requestOptions.page <= 1 ?
-                                "messages-search__button button button--small button--disabled" :
-                                "messages-search__button button button--small"
+                                "messages-search__button button button--small button--disabled prevPage" :
+                                "messages-search__button button button--small prevPage"
                         }
                         href="#"
                         onClick={this.props.requestOptions.page > 1 ?
-                        this.previous.bind(this) : e => e.preventDefault()}>
+                        this.previous : e => e.preventDefault()}>
                     <i className="fa fa-chevron-left"></i>
                 </button>
 
                 <button className={
                             !this.props.requestOptions.hasMorePages ?
-                                "messages-search__button button button--small button--disabled" :
-                                "messages-search__button button button--small"
+                                "messages-search__button button button--small button--disabled nextPage" :
+                                "messages-search__button button button--small nextPage"
                         }
                         href="#"
                         onClick={this.props.requestOptions.hasMorePages ?
-                            this.next.bind(this) : e => e.preventDefault()}>
+                            this.next : e => e.preventDefault()}>
                     <i className="fa fa-chevron-right"></i>
                 </button>
 
-                <button className="messages-search__button button button--small"
+                <button className="messages-search__button button button--small toggleStream"
                         href="#"
-                        onClick={this.toggleStreaming.bind(this)}>
+                        onClick={this.toggleStreaming}>
                     <i className={
                         this.props.requestOptions.started ?
                             "messages-search__stop-start fa fa-stop" : "messages-search__stop-start fa fa-play"
@@ -131,9 +135,9 @@ export default class MessagesSearch extends React.PureComponent  {
 
                 </button>
 
-                <button className="messages-search__button button button--small messages-search__button--last"
+                <button className="messages-search__button button button--small messages-search__button--last refresh"
                         href="#"
-                        onClick={e => { e.preventDefault(); this.search(); }}>
+                        onClick={this.search}>
                     <i className={this.props.requesting ? "fa fa-refresh fa-spin" : "fa fa-refresh"} ></i>
                 </button>
             </div>

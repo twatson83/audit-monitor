@@ -35,6 +35,7 @@ MessagesHeader.propTypes = {
         start: React.PropTypes.string,
         end: React.PropTypes.string,
     }).isRequired,
+    requesting: React.PropTypes.bool.isRequired,
     fetchMessages: React.PropTypes.func.isRequired,
     toggleStreaming: React.PropTypes.func.isRequired,
 };

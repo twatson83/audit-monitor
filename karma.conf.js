@@ -8,10 +8,15 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai', 'sinon'],
+
+    client: {
+      chai: {
+        includeStack: true
+      }
+    },
 
     usePolling: true,
 
@@ -52,7 +57,9 @@ module.exports = function(config) {
         publicPath: '/static/'
       },
       module: {
-        loaders: [{
+        loaders: [
+          //{ test: /sinon.*\.js$/,                loader: "imports?define=>false,require=>false" }
+          {
           test: /\.js$/,
           loaders: [ 'babel' ],
           exclude: /node_modules/,
@@ -117,6 +124,8 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     plugins: [
+      'karma-sinon',
+      'karma-chai',
       'karma-mocha',
       'karma-webpack',
       'karma-sourcemap-loader',

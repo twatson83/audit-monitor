@@ -9,37 +9,41 @@ import Panel from '../../../panel/components';
 
 describe("components", () => {
 
-    let state, functions, props,
-        fetchMessagesArgs, toggleStreamingArgs, clearServerRenderedArgs;
-
-    beforeEach(() => {
-        fetchMessagesArgs = null;
-        toggleStreamingArgs = null;
-        clearServerRenderedArgs = null;
-
-        state = audit();
-        functions = {
-            fetchMessages: (...args) => {
-                fetchMessagesArgs = args;
-            },
-            toggleStreaming: (...args) => {
-                toggleStreamingArgs = args;
-            },
-            stopStream: () => {},
-            setActiveMessage: () => {},
-            getSession: () => {},
-            clearSession: () => {},
-            clearServerRendered: (...args) => {
-                clearServerRenderedArgs = args;
-            }
-        };
-        props = {
-            ...state,
-            ...functions
-        };
-    });
-
     describe("<Messages />", () => {
+
+        let state, functions, props,
+            fetchMessagesArgs, toggleStreamingArgs, clearServerRenderedArgs, stopStreamCalled;
+
+        beforeEach(() => {
+            fetchMessagesArgs = null;
+            toggleStreamingArgs = null;
+            clearServerRenderedArgs = null;
+            stopStreamCalled = false;
+
+            state = audit();
+            functions = {
+                fetchMessages: (...args) => {
+                    fetchMessagesArgs = args;
+                },
+                toggleStreaming: (...args) => {
+                    toggleStreamingArgs = args;
+                },
+                stopStream: () => {
+                    stopStreamCalled = true;
+                },
+                setActiveMessage: () => {},
+                getSession: () => {},
+                clearSession: () => {},
+                clearServerRendered: (...args) => {
+                    clearServerRenderedArgs = args;
+                }
+            };
+            props = {
+                ...state,
+                ...functions
+            };
+        });
+
         it("should start streaming if started is true", function(){
             state.requestOptions.started = true;
             mount(<Messages {...props} />);
@@ -80,6 +84,11 @@ describe("components", () => {
             state.requestOptions.serverRendered = false;
             mount(<Messages {...props} />);
             expect(clearServerRenderedArgs).to.not.exist;
+        });
+
+        it("should stop the messages stream when unmounted", () => {
+            mount(<Messages {...props} />).unmount();
+            expect(stopStreamCalled).to.be.true;
         });
 
         it("should render a panel", () => {
