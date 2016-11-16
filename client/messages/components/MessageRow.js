@@ -9,7 +9,6 @@ export default class MessageRow extends React.PureComponent  {
     constructor(props){
         super(props);
         this.showSession = this.showSession.bind(this);
-        this.showMessageDetails = this.showMessageDetails.bind(this);
     }
 
     getColValue(name, col, message) {
@@ -30,17 +29,12 @@ export default class MessageRow extends React.PureComponent  {
         this.props.getSession(this.props.cid, this.props.message.CorrelationId);
     }
 
-    showMessageDetails(event){
-        event.preventDefault();
-        this.props.setActiveMessage(this.props.cid, this.props.message);
-    }
-
     render() {
         return (
             <tr>
                 {
                     Object.keys(this.props.columns).map(k =>
-                        <td key={this.props.message._id + k}>{this.getColValue(k, this.props.columns[k], this.props.message)}</td>
+                        <td className={this.props.message._id + k} key={this.props.message._id + k}>{this.getColValue(k, this.props.columns[k], this.props.message)}</td>
                     )
                 }
                 <td><a href="#" onClick={this.showSession}>Session</a></td>

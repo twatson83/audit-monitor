@@ -44,7 +44,7 @@ describe("components", () => {
             };
         });
 
-        it("should start streaming if started is true", function(){
+        it("should start streaming if started is true", () => {
             state.requestOptions.started = true;
             mount(<Messages {...props} />);
             expect(toggleStreamingArgs).to.exist;
@@ -52,7 +52,7 @@ describe("components", () => {
             expect(toggleStreamingArgs[1]).to.equal(true);
         });
 
-        it("should not start streaming if started is false", function(){
+        it("should not start streaming if started is false", () => {
             state.requestOptions.started = false;
             mount(<Messages {...props} />);
             expect(toggleStreamingArgs).to.exist;
@@ -60,27 +60,27 @@ describe("components", () => {
             expect(toggleStreamingArgs[1]).to.equal(false);
         });
 
-        it("should fetch messages if the component wasnt rendered on the server", function(){
+        it("should fetch messages if the component wasnt rendered on the server", () => {
             mount(<Messages {...props} />);
             expect(fetchMessagesArgs).to.exist;
             expect(fetchMessagesArgs[0]).to.equal(state.cid);
             expect(fetchMessagesArgs[1]).to.equal(state.requestOptions);
         });
 
-        it("should not fetch messages if the component was rendered on the server", function(){
+        it("should not fetch messages if the component was rendered on the server", () => {
             state.requestOptions.serverRendered = true;
             mount(<Messages {...props} />);
             expect(fetchMessagesArgs).to.not.exist;
         });
 
-        it("should clearServerRendered flag if the component was rendered on the server", function(){
+        it("should clearServerRendered flag if the component was rendered on the server", () => {
             state.requestOptions.serverRendered = true;
             mount(<Messages {...props} />);
             expect(clearServerRenderedArgs).to.exist;
             expect(clearServerRenderedArgs[0]).to.equal(state.cid);
         });
 
-        it("should not clearServerRendered flag if the component was not rendered on the server", function(){
+        it("should not clearServerRendered flag if the component was not rendered on the server", () => {
             state.requestOptions.serverRendered = false;
             mount(<Messages {...props} />);
             expect(clearServerRenderedArgs).to.not.exist;

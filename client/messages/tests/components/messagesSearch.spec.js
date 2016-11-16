@@ -199,9 +199,9 @@ describe("components", () => {
 
         });
 
-        describe("queryChange method", function(){
+        describe("queryChange method", () => {
 
-            it("should update query in state", function(){
+            it("should update query in state", () => {
                 const wrapper = shallow(<MessagesSearch {...props} />);
                 let input = wrapper.find("input.query");
                 input.simulate("change", {target: {value: 'Test Search Value'}});
@@ -209,7 +209,7 @@ describe("components", () => {
                 expect(state.query).to.equal('Test Search Value');
             });
 
-            it("should search using the new query", function(done){
+            it("should search using the new query", (done) => {
                 props.fetchMessages = (cid, newState) => {
                     expect(cid).to.equal(props.cid);
                     expect(newState.page).to.equal(props.requestOptions.page);
@@ -226,9 +226,9 @@ describe("components", () => {
 
         });
 
-        describe("startDateChange method", function(){
+        describe("startDateChange method", () => {
 
-            it("should update start in state", function(){
+            it("should update start in state", () => {
                 let start = moment();
                 const wrapper = shallow(<MessagesSearch {...props} />);
                 let input = wrapper.find(".startDate");
@@ -237,7 +237,7 @@ describe("components", () => {
                 expect(state.start).to.equal(start.format());
             });
 
-            it("should not search using the new start date if end date is not set", function(){
+            it("should not search using the new start date if end date is not set", () => {
                 let start = moment();
                 props.requestOptions.end = null;
                 const wrapper = shallow(<MessagesSearch {...props} />);
@@ -248,7 +248,7 @@ describe("components", () => {
                 expect(instance.search.called).to.not.be.true;
             });
 
-            it("should search using the new start date if end date is set", function(){
+            it("should search using the new start date if end date is set", () => {
                 let start = moment();
                 const wrapper = shallow(<MessagesSearch {...props} />);
                 let instance = wrapper.renderer.getMountedInstance();
@@ -260,9 +260,9 @@ describe("components", () => {
 
         });
 
-        describe("endDateChange method", function(){
+        describe("endDateChange method", () => {
 
-            it("should update end in state", function(){
+            it("should update end in state", () => {
                 let end = moment();
                 const wrapper = shallow(<MessagesSearch {...props} />);
                 let input = wrapper.find(".endDate");
@@ -271,7 +271,7 @@ describe("components", () => {
                 expect(state.end).to.equal(end.format());
             });
 
-            it("should not search using the new end date if start date is not set", function(){
+            it("should not search using the new end date if start date is not set", () => {
                 let end = moment();
                 props.requestOptions.start = null;
                 const wrapper = shallow(<MessagesSearch {...props} />);
@@ -282,7 +282,7 @@ describe("components", () => {
                 expect(instance.search.called).to.not.be.true;
             });
 
-            it("should search using the new end date if start date is set", function(){
+            it("should search using the new end date if start date is set", () => {
                 let end = moment();
                 const wrapper = shallow(<MessagesSearch {...props} />);
                 let instance = wrapper.renderer.getMountedInstance();
@@ -294,9 +294,9 @@ describe("components", () => {
 
         });
 
-        describe("previous method", function(){
+        describe("previous method", () => {
 
-            it("clicking the previous page button should decrease the page number of pages is more than 1", function(done){
+            it("clicking the previous page button should decrease the page number of pages is more than 1", (done) => {
                 props.requestOptions.page = 2;
                 props.fetchMessages = (cid, newState) => {
                     expect(cid).to.equal(props.cid);
@@ -308,7 +308,7 @@ describe("components", () => {
                 button.simulate("click", { preventDefault: () => {} });
             });
 
-            it("clicking the previous page button should not decrease the page number of page is 1", function(){
+            it("clicking the previous page button should not decrease the page number of page is 1", () => {
                 props.requestOptions.page = 1;
                 const wrapper = shallow(<MessagesSearch {...props} />);
                 let instance = wrapper.renderer.getMountedInstance();
@@ -321,9 +321,9 @@ describe("components", () => {
 
         });
 
-        describe("next method", function(){
+        describe("next method", () => {
 
-            it("clicking the next page button should increase the page number if there are more pages", function(done){
+            it("clicking the next page button should increase the page number if there are more pages", (done) => {
                 props.requestOptions.hasMorePages = true;
                 props.requestOptions.page = 2;
                 props.fetchMessages = (cid, newState) => {
@@ -336,7 +336,7 @@ describe("components", () => {
                 button.simulate("click", { preventDefault: () => {} });
             });
 
-            it("clicking the next page button should not increase the page number if there are no more pages", function(){
+            it("clicking the next page button should not increase the page number if there are no more pages", () => {
                 props.requestOptions.hasMorePages = false;
                 props.requestOptions.page = 2;
                 const wrapper = shallow(<MessagesSearch {...props} />);
@@ -350,9 +350,9 @@ describe("components", () => {
 
         });
 
-        describe("toggleStreaming method", function(){
+        describe("toggleStreaming method", () => {
 
-            it("clicking the toggle stream button should toggle streaming", function(done){
+            it("clicking the toggle stream button should toggle streaming", (done) => {
                 props.requestOptions.started = false;
                 props.toggleStreaming = (cid, stream) => {
                     expect(cid).to.equal(props.cid);
@@ -365,9 +365,9 @@ describe("components", () => {
             });
         });
 
-        describe("search method", function(){
+        describe("search method", () => {
 
-            it("clicking the refresh button should search", function(done){
+            it("clicking the refresh button should search", (done) => {
                 props.fetchMessages = (cid, newState) => {
                     expect(cid).to.equal(props.cid);
                     expect(newState.page).to.equal(props.requestOptions.page);

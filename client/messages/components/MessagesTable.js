@@ -18,7 +18,8 @@ export default class MessagesTable extends React.PureComponent {
                 {
                     this.props.requesting ?
                         <tr>
-                            <td colSpan={Object.keys(this.props.columns).length + 2}>
+                            <td className="loadingCell"
+                                colSpan={Object.keys(this.props.columns).length + 2}>
                                 Loading..
                             </td>
                         </tr>
