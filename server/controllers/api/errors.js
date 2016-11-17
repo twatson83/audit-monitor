@@ -1,5 +1,5 @@
 import logger from '../../utils/logger';
-import { find, getById, findBySession } from '../../models/error';
+import { find, getById } from '../../models/error';
 
 /**
  * Finds a single error by id
